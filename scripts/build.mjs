@@ -15,14 +15,14 @@ const AVATAR = b64("avatar.jpg");
 const W = existsSync(join(here, "widths.json")) ? JSON.parse(readFileSync(join(here, "widths.json"), "utf8")) : {};
 
 const C = {
-  text: "#F4F2FA",
-  body: "#D2CEE2",
-  muted: "#BDB8D0",
-  purple: "#A78BFA",
-  violet: "#8B5CF6",
-  border: "#2C2646",
-  cardBorder: "#3A3164",
-  card: "#16132A",
+  text: "#F1F5FB",
+  body: "#CBD5E6",
+  muted: "#AAB6CC",
+  purple: "#60A5FA",
+  violet: "#3B82F6",
+  border: "#1E2A44",
+  cardBorder: "#22345A",
+  card: "#111A2E",
 };
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -60,7 +60,7 @@ const doc = (w, h, body, defs = "") => `<svg xmlns="http://www.w3.org/2000/svg" 
 @font-face{font-family:'G';src:url(data:font/woff2;base64,${FONT}) format('woff2');font-weight:100 900;}
 text{font-family:'G',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;}
 </style>
-<linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14111F"/><stop offset="1" stop-color="#0E0C17"/></linearGradient>
+<linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0D1424"/><stop offset="1" stop-color="#0A0F1C"/></linearGradient>
 <clipPath id="round"><rect width="${w}" height="${h}" rx="20"/></clipPath>
 ${defs}
 </defs>
@@ -84,23 +84,23 @@ function hero() {
   const dots = [];
   for (let x = 1120; x <= 1260; x += 18) for (let y = 170; y <= 300; y += 18) dots.push(`<circle cx="${x}" cy="${y}" r="1.4"/>`);
   const defs = `
-<radialGradient id="glow" cx="1" cy="0" r="0.9"><stop offset="0" stop-color="#7C3AED" stop-opacity="0.55"/><stop offset="0.6" stop-color="#5B21B6" stop-opacity="0.12"/><stop offset="1" stop-color="#5B21B6" stop-opacity="0"/></radialGradient>
-<linearGradient id="swoosh" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8B5CF6" stop-opacity="0"/><stop offset="0.6" stop-color="#8B5CF6" stop-opacity="0.35"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0.7"/></linearGradient>
-<linearGradient id="name" gradientUnits="userSpaceOnUse" x1="250" y1="0" x2="740" y2="0"><stop offset="0" stop-color="#EEEAFF"/><stop offset="0.45" stop-color="#C9B8FF"/><stop offset="1" stop-color="#9F7AEA"/></linearGradient>
+<radialGradient id="glow" cx="1" cy="0" r="0.9"><stop offset="0" stop-color="#2563EB" stop-opacity="0.55"/><stop offset="0.6" stop-color="#1D4ED8" stop-opacity="0.12"/><stop offset="1" stop-color="#1D4ED8" stop-opacity="0"/></radialGradient>
+<linearGradient id="swoosh" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3B82F6" stop-opacity="0"/><stop offset="0.6" stop-color="#3B82F6" stop-opacity="0.35"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0.7"/></linearGradient>
+<linearGradient id="name" gradientUnits="userSpaceOnUse" x1="250" y1="0" x2="740" y2="0"><stop offset="0" stop-color="#EFF6FF"/><stop offset="0.45" stop-color="#93C5FD"/><stop offset="1" stop-color="#3B82F6"/></linearGradient>
 <clipPath id="av"><circle cx="1068" cy="160" r="128"/></clipPath>`;
   measured.push("700|Hi, I’m ", "700|Naing Naing Htun");
   const body = `
 <rect x="560" y="-200" width="760" height="560" fill="url(#glow)"/>
 <path d="M700 320 C 900 300 1060 150 1280 70 L 1280 120 C 1090 190 950 310 820 320 Z" fill="url(#swoosh)"/>
-<g fill="#A78BFA" opacity="0.25">${dots.join("")}</g>
+<g fill="#60A5FA" opacity="0.25">${dots.join("")}</g>
 <text x="56" y="128" font-size="62" font-weight="700" letter-spacing="-1.2"><tspan fill="${C.text}">Hi, I’m </tspan><tspan fill="url(#name)">Naing Naing Htun</tspan><tspan> 👋</tspan></text>
 <text x="58" y="186" font-size="24"><tspan font-weight="600" fill="${C.text}">Full Stack Software Engineer</tspan><tspan fill="${C.body}">  •  building real-time communication software</tspan></text>
 ${lu("map-pin", 56, 212, 26, C.purple, 2.2)}
 ${T(94, 233, 21, 400, C.body, "Yangon, Myanmar")}
-<circle cx="1068" cy="160" r="138" fill="#8B5CF6" opacity="0.18"/>
+<circle cx="1068" cy="160" r="138" fill="#3B82F6" opacity="0.18"/>
 <circle cx="1068" cy="160" r="128" fill="#000"/>
 <image href="data:image/jpeg;base64,${AVATAR}" x="940" y="32" width="256" height="256" clip-path="url(#av)"/>
-<circle cx="1068" cy="160" r="129" fill="none" stroke="#EDE9FE" stroke-width="5"/>`;
+<circle cx="1068" cy="160" r="129" fill="none" stroke="#DBEAFE" stroke-width="5"/>`;
   return doc(w, h, body, defs);
 }
 
@@ -109,12 +109,12 @@ function button({ w, label, light, icon }) {
   const h = 64;
   const bg = light
     ? `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="12" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="2"/>`
-    : `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="12" fill="url(#btn)" stroke="#B9A5FF" stroke-width="2"/>`;
+    : `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="12" fill="url(#btn)" stroke="#93C5FD" stroke-width="2"/>`;
   const fg = light ? "#111111" : "#FFFFFF";
   measured.push(`700|${label}`);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}">
 <defs><style>@font-face{font-family:'G';src:url(data:font/woff2;base64,${FONT}) format('woff2');font-weight:100 900;}text{font-family:'G',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;}</style>
-<linearGradient id="btn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B6CF6"/><stop offset="1" stop-color="#6A45E0"/></linearGradient></defs>
+<linearGradient id="btn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs>
 ${bg}
 ${icon(fg)}
 <text x="70" y="40.5" font-size="20" font-weight="700" letter-spacing="1.6" fill="${fg}">${label}</text>
@@ -129,7 +129,7 @@ const btnLinkedin = () =>
     w: 250,
     label: "LINKEDIN",
     icon: () =>
-      `<rect x="26" y="16" width="32" height="32" rx="6" fill="#FFFFFF"/><text x="31.5" y="41" font-size="21" font-weight="800" fill="#6A45E0">in</text>`,
+      `<rect x="26" y="16" width="32" height="32" rx="6" fill="#FFFFFF"/><text x="31.5" y="41" font-size="21" font-weight="800" fill="#2563EB">in</text>`,
   });
 
 // ---------- BODY ----------
@@ -138,7 +138,7 @@ function card(x, y, w, h) {
 }
 
 function heading(y, icon, label) {
-  return `${lu(icon, 40, y - 30, 36, "#C4B5FD", 1.8)}\n${T(92, y, 32, 700, C.text, label, ' letter-spacing="-0.4"')}`;
+  return `${lu(icon, 40, y - 30, 36, "#93C5FD", 1.8)}\n${T(92, y, 32, 700, C.text, label, ' letter-spacing="-0.4"')}`;
 }
 
 function rich(x, y, size, parts) {
@@ -151,8 +151,8 @@ function rich(x, y, size, parts) {
 
 function workCard(x, y, w, h, icon, title, lines) {
   return `${card(x, y, w, h)}
-<rect x="${x + 22}" y="${y + 24}" width="54" height="54" rx="12" fill="#2A2252"/>
-${lu(icon, x + 34, y + 36, 30, "#E4DEFF", 2)}
+<rect x="${x + 22}" y="${y + 24}" width="54" height="54" rx="12" fill="#172A4D"/>
+${lu(icon, x + 34, y + 36, 30, "#DBEAFE", 2)}
 ${T(x + 98, y + 46, 20, 600, C.text, title)}
 ${lines.map((l, i) => T(x + 98, y + 82 + i * 27, 17, 400, C.muted, l)).join("\n")}`;
 }
@@ -166,11 +166,11 @@ const CHIPS = {
   "Node.js": { icon: "nodedotjs", bg: "#3C9A3F", fg: "#FFFFFF", ic: "#FFFFFF" },
   Laravel: { icon: "laravel", bg: "#E3342F", fg: "#FFFFFF", ic: "#FFFFFF" },
   PostgreSQL: { icon: "postgresql", bg: "#3D6FD9", fg: "#FFFFFF", ic: "#FFFFFF" },
-  Kafka: { icon: "apachekafka", bg: "#24212B", fg: "#FFFFFF", ic: "#FFFFFF", stroke: "#4A4558" },
+  Kafka: { icon: "apachekafka", bg: "#1E2433", fg: "#FFFFFF", ic: "#FFFFFF", stroke: "#475569" },
   Docker: { icon: "docker", bg: "#2496ED", fg: "#FFFFFF", ic: "#FFFFFF" },
   Kubernetes: { icon: "kubernetes", bg: "#326CE5", fg: "#FFFFFF", ic: "#FFFFFF" },
-  SIP: { bg: "#3A3846", fg: "#FFFFFF" },
-  VoIP: { bg: "#3A3846", fg: "#FFFFFF" },
+  SIP: { bg: "#334155", fg: "#FFFFFF" },
+  VoIP: { bg: "#334155", fg: "#FFFFFF" },
   Android: { icon: "android", bg: "#2FB34F", fg: "#FFFFFF", ic: "#FFFFFF" },
   iOS: { icon: "apple", bg: "#000000", fg: "#FFFFFF", ic: "#FFFFFF", stroke: "#5A5A5A" },
 };
@@ -198,7 +198,7 @@ function techCard(x, y, w, icon, title, names) {
   const ch = chips(x + 24, y + 64, names);
   if (ch.end > x + w - 16) console.warn(`chips overflow in ${title}: ${ch.end} > ${x + w - 16}`);
   return `${card(x, y, w, 120)}
-${lu(icon, x + 24, y + 18, 32, "#C4B5FD", 1.8)}
+${lu(icon, x + 24, y + 18, 32, "#93C5FD", 1.8)}
 ${T(x + 76, y + 44, 22, 700, C.text, title)}
 ${ch.svg}`;
 }
